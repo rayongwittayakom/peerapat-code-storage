@@ -5,11 +5,35 @@ int main() {
 	bool haveKeys;
 	int HP;
 	bool enoughHP;
-	printf("GET /player/character/stat/hp?output=int: \t");
+	retry:
+	printf("GET v2.api.dungeon.personal.kisurus.com/player/character/stat/hp?output=int: \t");
 	scanf("%d", &HP);
-	printf("GET /player/character/inventory/get_item?item_name=keys&output=bool: \t");
+	key:
+	printf("GET v2.api.dungeon.personal.kisurus.com/player/character/inventory/get_item?item_name=keys&output=bool: \t");
 	scanf("%d", &haveKeys);
+	if (HP < 0 && HP > 100)
+	{
+		printf("ERR: Request intercepted by intercept.dev-service.dungeon.personal.kisurus.com");
+		printf("Thought you could overflow the counter? IN NO WAY I WOULD ALLOW THAT TO HAPPEN");
+		goto retry;
+	} else if (haveKeys != 0 && haveKeys != 1) {
+		printf("api.v2.dungeon.personal.kisurus.com return 400");
+		printf("Why would you overflow boolean???");
+		goto key;
+	}
 	if (haveKeys = 1) 
 	{
-		
-  
+		if (HP >= 50)
+		{
+			printf("POST api.v2.dungeon.personal.kisurus.com/scene/interact/unlock_chest return 204");
+			printf("Treasure unlocked!");
+		} else if (HP < 50) 
+		{
+			printf("api.v2.dungeon.personal.kisurus.com reply with 'Insufficient health'");
+			printf("I would really recommend healing your health right now :)");
+		}
+	} else {
+		printf("Heh, you thought you could lockpick your way in right? Well it ain't happening under my watch!");
+	}
+	return 0;
+}
