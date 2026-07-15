@@ -5,22 +5,10 @@ int main() {
 	bool haveKeys;
 	int HP;
 	bool enoughHP;
-	retry:
 	printf("GET v2.api.dungeon.personal.kisurus.com/player/character/stat/hp?output=int: \t");
 	scanf("%d", &HP);
-	key:
 	printf("GET v2.api.dungeon.personal.kisurus.com/player/character/inventory/get_item?item_name=keys&output=bool: \t");
 	scanf("%d", &haveKeys);
-	if (HP < 0 && HP > 100)
-	{
-		printf("ERR: Request intercepted by intercept.dev-service.dungeon.personal.kisurus.com\n");
-		printf("Thought you could overflow the counter? IN NO WAY I WOULD ALLOW THAT TO HAPPEN\n");
-		goto retry;
-	} else if (haveKeys != 0 && haveKeys != 1) {
-		printf("api.v2.dungeon.personal.kisurus.com return 400\n");
-		printf("Why would you overflow boolean???\n");
-		goto key;
-	}
 	if (haveKeys = 1) 
 	{
 		if (HP >= 50)
