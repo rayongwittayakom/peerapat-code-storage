@@ -4,7 +4,7 @@ int main() {
 	int duration;
 	hour:
 	printf("You have parked for how many hours?\n");
-	scanf("%d", duration);
+	scanf("%d", &duration);
 	if (duration < 1) {
 		printf("Free parking!");
 	} else if (duration >= 1 && duration <= 3) {
