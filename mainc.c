@@ -3,7 +3,7 @@
 int main() { 
     int i;
     int j = 0;
-    for (i=1; i<20; i++) {
+    for (i=1; i<2000; i++) {
         printf("%d\n",i);
         if (i%2!=0) {
             j += i;
